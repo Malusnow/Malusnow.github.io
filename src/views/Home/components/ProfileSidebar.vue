@@ -8,7 +8,7 @@ import img from '@/assets/1.png'
 
 <template>
   <div class="flex justify-center m-4">
-    <Avatar class="w-50 h-50 border border-ring/50">
+    <Avatar class="w-48 h-48 border border-ring/50">
       <AvatarImage :src="img" alt="@shadcn" />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
