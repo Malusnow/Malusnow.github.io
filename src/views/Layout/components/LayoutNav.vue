@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue';
 import { useColorMode } from '@vueuse/core';
 
+
 const colorMode = useColorMode();
 // 切换暗色模式
 const toggleTheme = () => {
@@ -12,16 +13,17 @@ const toggleTheme = () => {
 <template>
   <nav class="w-full bg-background border-b border-border">
     <div class="max-w-350 w-full mx-auto h-14 flex items-center justify-between px-4">
-      <div class="font-medium text-lg text-ring">Malus</div>
+      <!-- <div class="font-medium text-lg text-ring">Malus</div> -->
+      <div></div>
       <div>
         <ul class="flex space-x-6 text-md font-medium list-none">
           <li>
-            <a href="javascript:;" class="text-ring hover:text-foreground transition-colors no-underline">
+            <a href="javascript:;" @click="$router.push('/')" class="text-ring hover:text-foreground transition-colors no-underline">
               Home
             </a>
           </li>
           <li>
-            <a href="javascript:;" class="text-ring hover:text-foreground transition-colors no-underline">
+            <a href="javascript:;" @click="$router.push('/blog')" class="text-ring hover:text-foreground transition-colors no-underline">
               Blog
             </a>
           </li>

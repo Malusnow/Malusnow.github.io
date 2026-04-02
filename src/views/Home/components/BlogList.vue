@@ -1,4 +1,7 @@
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
 </script>
 
 <template>
@@ -15,7 +18,7 @@
         <article class="md:grid md:grid-cols-6">
             <div class="relative isolate flex flex-col items-start rounded-2xl px-4 py-6 hover:bg-sidebar-ring/30 md:col-span-5 border border-border">
             <h2 class="text-base font-semibold tracking-tight text-foreground">
-                <a href="#">
+                <a href="javascript:;" @click="router.push('/blog')">
                 <span class="absolute inset-0 z-10"></span>
                 Crafting a design system for a multiplanetary future
                 </a>
@@ -32,7 +35,7 @@
         <article class="md:grid md:grid-cols-6">
             <div class="relative isolate flex flex-col items-start rounded-2xl px-4 py-6 hover:bg-sidebar-ring/30 md:col-span-5 border border-border">
             <h2 class="text-base font-semibold tracking-tight text-foreground">
-                <a href="#">
+                <a href="javascript:;" @click="router.push('/blog')">
                 <span class="absolute inset-0 z-10"></span>
                 Introducing Animaginary: High performance web animations
                 </a>
