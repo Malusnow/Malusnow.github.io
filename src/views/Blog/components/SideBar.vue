@@ -16,11 +16,33 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 import ViewContent from './ViewContent.vue'
+import { useRouter } from 'vue-router';
+import { getAllPostsMetadata } from '@/lib/parse';
+const posts = getAllPostsMetadata();
+const router = useRouter();
+
+const groupedPosts = Object.entries(
+  posts.reduce((acc, post) => {
+    const year = String(post.date || '').slice(0, 4) || '未分类';
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  }, {})
+)
+  .sort(([a], [b]) => b.localeCompare(a))
+  .map(([year, items]) => ({ year, items }));
+
+const goToPost = (id) => {
+    router.push(`/blog/${encodeURIComponent(id)}`);
+};
 </script>
 
 <template>
   <SidebarProvider>
     <Sidebar>
+      <!-- 个人资料 -->
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -36,14 +58,16 @@ import ViewContent from './ViewContent.vue'
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
-        <SidebarGroup>
+        <SidebarGroup v-for="group in groupedPosts" :key="group.year">
+          <span class="text-xs m-2 text-muted-foreground">{{ group.year }}</span>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
+              <SidebarMenuItem v-for="post in group.items" :key="post.id">
                 <SidebarMenuButton as-child>
-                  <a href="#">
-                    <span>Home</span>
+                  <a href="#" @click.prevent="goToPost(post.id)">
+                    <span>{{ post.title }}</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -51,9 +75,11 @@ import ViewContent from './ViewContent.vue'
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter />
       <SidebarRail />
     </Sidebar>
+    <!-- 文章内容 -->
     <SidebarInset>
       <header class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
         <div class="flex items-center gap-2 px-4">

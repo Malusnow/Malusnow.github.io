@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router';
 import { getAllPostsMetadata } from '@/lib/parse';
 const router = useRouter();
 const posts = getAllPostsMetadata();
-
+        
 const goToPost = (id) => {
     router.push(`/blog/${encodeURIComponent(id)}`);
 };
