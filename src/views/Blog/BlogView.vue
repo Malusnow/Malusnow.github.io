@@ -15,6 +15,8 @@ const route = useRoute()
 const postData = ref(null)
 const htmlContent = ref('')
 const tocItems = ref([])
+const loading = ref(true)
+const notFound = ref(false)
 
 watchEffect(async () => {
   const id = String(route.params.id || '')
@@ -29,7 +31,10 @@ watchEffect(async () => {
       label: item.text,
       level: item.level,
     }))
+  } else {
+    notFound.value = true
   }
+  loading.value = false
 })
 </script>
 

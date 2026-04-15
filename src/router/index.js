@@ -13,19 +13,22 @@ const router = createRouter({
           component: () => import('@/views/Home/HomeView.vue'),
         },
         {
-          path: 'blog/:id?',
+          path: 'blog',
+          component: () => import('@/views/Blog/BlogTimeline.vue'),
+        },
+        {
+          path: 'blog/:id',
           component: () => import('@/views/Blog/BlogView.vue'),
-        }
-      ]
+        },
+      ],
     },
-    
   ],
   scrollBehavior() {
     return {
       top: 0,
       behavior: 'smooth',
     }
-  }
+  },
 })
 
 export default router
