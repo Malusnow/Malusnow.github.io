@@ -6,7 +6,6 @@ import DOMPurify from 'dompurify'
 import { gfmHeadingId, getHeadingList } from 'marked-gfm-heading-id'
 import { getPostById } from '@/lib/parse'
 import ArticleContent from './components/ArticleContent.vue'
-import CommentSection from './components/CommentSection.vue'
 import TocSidebar from './components/TocSidebar.vue'
 
 marked.use(gfmHeadingId())
@@ -42,10 +41,8 @@ watchEffect(async () => {
   <div class="flex max-w-7xl gap-8 items-start mx-20">
     <!-- 左侧：文章 + 评论  -->
     <main class="flex-1 min-w-0 py-8">
-      <div class="space-y-6 p-6 bg-card rounded-lg border border-border shadow-sm">
+      <div class="space-y-6 p-12 bg-card rounded-lg border border-border shadow-sm">
         <ArticleContent :content="htmlContent" />
-        <hr class="border-border" />
-        <CommentSection />
       </div>
     </main>
 
